@@ -6,7 +6,8 @@ class Card
 public:
 	/* constructor & destructor */
 	virtual ~Card();
-	Card(const std::string& cardID, const std::string& issueDate, const std::string& holderName, double balance);
+	Card(const std::string& cardID, const std::string& issueDate,
+		const std::string& holderName, double balance);
 	
 	/* query & pay */
 	virtual void query() = 0;

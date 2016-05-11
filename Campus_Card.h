@@ -6,7 +6,8 @@ class Campus_Card:virtual public Card
 public:
 	/* constructor & destructor */
 	~Campus_Card() override;
-	Campus_Card(const std::string& cardID, const std::string& issueDate, const std::string& holderName, double balance, const std::string& studentID, const std::string& school);
+	Campus_Card(const std::string& cardID, const std::string& issueDate, const std::string& holderName,
+		double balance, const std::string& studentID, const std::string& school);
 
 	/* pay & query */
 	void query() override;
