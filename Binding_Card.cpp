@@ -2,10 +2,15 @@
 using namespace std;
 
 
-Binding_Card::Binding_Card(const std::string& cardID, const std::string& issueDate, const std::string& studentID, const std::string& holderName, const std::string& school, double balance, double overdraft)
-	:Card(cardID, issueDate, holderName, balance),
-	Campus_Card(cardID, issueDate, holderName, balance, studentID, school),
-	Deposit_Card(cardID, issueDate, holderName, balance, overdraft)
+Binding_Card::Binding_Card(const string& cardID,
+	const string& issueDate,
+	const string& studentID,
+	const string& holderName,
+	const string& school,
+	double balance, double overdraft)
+	:Campus_Card(cardID, issueDate, holderName, balance, studentID, school),
+	Deposit_Card(cardID, issueDate, holderName, balance, overdraft),
+	Card(cardID, issueDate, holderName, balance)
 {
 }
 
@@ -22,3 +27,4 @@ void Binding_Card::pay()
 {
 	cout << "pay() from Binding_Card" << endl;
 }
+

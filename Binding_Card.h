@@ -5,6 +5,7 @@ class Binding_Card
 	:public Campus_Card, public Deposit_Card
 {
 public:
+	/* constructor & destructor */
 	Binding_Card(const std::string& cardID,
 		const std::string& issueDate, 
 		const std::string& studentID, 
@@ -13,6 +14,7 @@ public:
 		double balance, 
 		double overdraft);
 	~Binding_Card() override;
+
 	void query() override;
 	void pay() override;
 };

@@ -28,7 +28,7 @@ inline std::string Card::getCardholderName() const
 	return __holderName;
 }
 
-inline double Card::getBalance() const
+double Card::getBalance() const
 {
 	return __balance;
 }

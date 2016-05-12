@@ -5,9 +5,13 @@ class Campus_Card:virtual public Card
 {
 public:
 	/* constructor & destructor */
+	Campus_Card(const std::string& cardID,
+		const std::string& issueDate,
+		const std::string& holderName,
+		double balance,
+		const std::string& studentID,
+		const std::string& school);
 	~Campus_Card() override;
-	Campus_Card(const std::string& cardID, const std::string& issueDate, const std::string& holderName,
-		double balance, const std::string& studentID, const std::string& school);
 
 	/* pay & query */
 	void query() override;
@@ -19,7 +23,12 @@ public:
 
 	void setStudentID(const std::string& studentID);
 	void setSchool(const std::string& school);
+
 private:
+	/*
+	* __studentID: Ñ§ºÅ
+	*    __school: Ñ§Ôº
+	*/
 	std::string __studentID;
 	std::string __school;
 };
