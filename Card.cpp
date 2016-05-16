@@ -2,6 +2,7 @@
 using namespace std;
 
 Card::Card(const std::string& cardID, const std::string& issueDate, const std::string& holderName, double balance)
+	:__record(new Record())
 {
 	setCardID(cardID);
 	setCardholderName(holderName);
@@ -11,6 +12,7 @@ Card::Card(const std::string& cardID, const std::string& issueDate, const std::s
 
 Card::~Card()
 {
+	delete __record;
 }
 
 inline std::string Card::getCardID() const

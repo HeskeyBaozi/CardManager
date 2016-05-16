@@ -5,9 +5,10 @@ class Record
 {
 public:
 	Record();
+	~Record();
 	friend std::ostream& operator<<(std::ostream& out, const Record& record);
 
-	void push();
+	void push(const Item& item = Item());
 private:
-	std::vector<Item> __record;
+	std::vector<Item> __recordVector;
 };

@@ -2,35 +2,25 @@
 using namespace std;
 
 Record::Record()
-	:__record()
+	:__recordVector()
 {
+	cout << "Record 生成了" << endl;
 }
 
-void Record::push()
+Record::~Record()
 {
-	int number;
-	string name;
-	double pricePerOne;
-	string date;
-	string place;
-	cout << "请输入数量:" << endl;
-	cin >> number;
-	cout << "请输入名字:" << endl;
-	cin >> name;
-	cout << "请输入单价:" << endl;
-	cin >> pricePerOne;
-	cout << "请输入购买日期:" << endl;
-	cin >> date;
-	cout << "请输入地点:" << endl;
-	cin >> place;
-	__record.push_back(Item(number, name, 
-		pricePerOne, date, place));
-
+	cout << "Record 消失了" << endl;
 }
+
+void Record::push(const Item& item)
+{
+	__recordVector.push_back(item);
+}
+
 
 std::ostream& operator<<(std::ostream& out, const Record& record)
 {
-	for(auto& item : record.__record)
+	for(const auto& item : record.__recordVector)
 	{
 		cout << item;
 	}
