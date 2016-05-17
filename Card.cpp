@@ -2,7 +2,7 @@
 using namespace std;
 
 Card::Card(const std::string& cardID, const std::string& issueDate, const std::string& holderName, double balance)
-	:__record(new Record())
+	:__record(make_shared<Record>())
 {
 	setCardID(cardID);
 	setCardholderName(holderName);

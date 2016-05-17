@@ -16,7 +16,7 @@ int main()
 	Print(myBindCard);
 	Print(myCampusCard);
 
-	cout<<"Óà¶î"<<myBindCard.__balance
+	cout << "Óà¶î"  << endl;
 	Consumption com(&myBindCard);
 	com.consume();
 	return 0;
