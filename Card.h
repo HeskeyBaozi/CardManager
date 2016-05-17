@@ -2,7 +2,6 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include "Record.h"
 class Card
 {
 public:
@@ -34,12 +33,9 @@ private:
 	*  __issueDate: 发卡日期
 	* __holderName: 持卡人姓名
 	*    __balance: 余额
-	*     __recordVector: 常量独有指针, 指向绑定的记录
 	*/
 	std::string __cardID;
 	std::string __issueDate;
 	std::string __holderName;
 	double __balance;
-public:
-	const std::shared_ptr<Record> __record;
 };
