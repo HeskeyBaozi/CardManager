@@ -3,6 +3,7 @@ using namespace std;
 
 Campus_Card::~Campus_Card()
 {
+	cout << this->getStudentID() << " 删除了" << endl;
 }
 
 Campus_Card::Campus_Card(const std::string& cardID, const std::string& issueDate, const std::string& holderName, double balance, const std::string& studentID, const std::string& school)
@@ -10,6 +11,7 @@ Campus_Card::Campus_Card(const std::string& cardID, const std::string& issueDate
 {
 	setStudentID(studentID);
 	setSchool(school);
+	cout << holderName << ' ' << studentID << " 的校园卡创建了" << endl;
 }
 
 void Campus_Card::pay()
