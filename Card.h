@@ -1,19 +1,23 @@
 #pragma once
 #include <iostream>
+#include "json/json.h"
 #include <ctime>
 #include <string>
 class Card
 {
 public:
 	/* constructor & destructor */
-	Card(const std::string& issueDate,
-		const std::string& holderName,
-		double balance);
+	explicit Card(const std::string& issueDate = "",
+		const std::string& holderName = "",
+		double balance = 0.0);
 	virtual ~Card();
 	
 	/* query & pay */
 	virtual void query() = 0;
 	virtual void pay() = 0;
+
+	/* to Json */
+	virtual Json::Value toJson() = 0;
 
 	/* Getter & Setter */
 	std::string getIssueDate() const;
@@ -23,6 +27,8 @@ public:
 	void setIssueDate(const std::string& issueDate);
 	void setCardholderName(const std::string& holderName);
 	void setBalance(double balance);
+
+	virtual std::string getClassName();
 
 private:
 	/*

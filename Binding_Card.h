@@ -6,15 +6,31 @@ class Binding_Card
 {
 public:
 	/* constructor & destructor */
-	Binding_Card(
-		const std::string& issueDate, 
-		const std::string& studentID, 
-		const std::string& holderName, 
-		const std::string& school,
-		double balance, 
-		double overdraft);
+	explicit Binding_Card(
+		const std::string& issueDate = "None",
+		const std::string& studentID = "None",
+		const std::string& holderName = "None",
+		const std::string& school = "None",
+		double balance = 0.0, 
+		double overdraft = 0.0);
 	~Binding_Card() override;
 
 	void query() override;
 	void pay() override;
+
+	/* to Json */
+	/* Json ½á¹¹:
+	*  string issueDate
+	*  
+	*
+	*
+	*
+	*
+	*
+	*
+	*/
+	Json::Value toJson() override;
+
+
+	std::string getClassName() override;
 };

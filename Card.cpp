@@ -44,3 +44,8 @@ inline void Card::setBalance(double balance)
 {
 	__balance = balance;
 }
+
+string Card::getClassName()
+{
+	return "Card";
+}

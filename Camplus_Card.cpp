@@ -28,12 +28,12 @@ void Campus_Card::query()
 	cout << "Call query() from Campus" << endl;
 }
 
-inline std::string Campus_Card::getStudentID() const
+std::string Campus_Card::getStudentID() const
 {
 	return __studentID;
 }
 
-inline std::string Campus_Card::getSchool() const
+std::string Campus_Card::getSchool() const
 {
 	return __school;
 }
@@ -46,4 +46,9 @@ inline void Campus_Card::setStudentID(const std::string& studentID)
 inline void Campus_Card::setSchool(const std::string& school)
 {
 	__school = school;
+}
+
+std::string Campus_Card::getClassName()
+{
+	return "Campus_Card";
 }

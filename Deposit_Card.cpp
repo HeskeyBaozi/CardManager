@@ -45,3 +45,8 @@ void Deposit_Card::setOverdraft(double overdraft)
 {
 	__overdraft = overdraft;
 }
+
+std::string Deposit_Card::getClassName()
+{
+	return "Deposit_Card";
+}

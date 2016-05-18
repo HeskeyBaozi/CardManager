@@ -30,3 +30,19 @@ void Binding_Card::pay()
 	cout << "pay() from Binding_Card" << endl;
 }
 
+Json::Value Binding_Card::toJson()
+{
+	Json::Value object;
+	object["issueDate"] = Json::Value(getIssueDate());
+	object["holderName"] = Json::Value(getCardholderName());
+	object["balance"] = Json::Value(getBalance());
+	object["studentID"] = Json::Value(getStudentID());
+	object["school"] = Json::Value(getSchool());
+	object["overdraft"] = Json::Value(getOverdraft());
+	return object;
+}
+
+std::string Binding_Card::getClassName()
+{
+	return "Binding_Card";
+}

@@ -1,8 +1,10 @@
 #pragma once
 #include "Binding_Card.h"
+#include <fstream>
 #include <memory>
 #include <string>
 #include <map>
+
 class SystemBase
 {
 public:
@@ -12,6 +14,11 @@ public:
 
 	void pushCard();
 	void pop();
+
+	virtual void save();
+	virtual void load();
+
+
 private:
 	std::map<std::string, std::shared_ptr<Card> > __cardDictionary;
 	static int getValidNumber(const int begin, const int end);

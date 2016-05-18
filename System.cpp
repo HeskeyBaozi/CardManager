@@ -33,7 +33,7 @@ void SystemBase::pushCard()
 	switch (myChoose)
 	{
 
-	/* 生成校园卡 */
+		/* 生成校园卡 */
 	case 1:
 	{
 		/* 获取学号 */
@@ -119,6 +119,51 @@ void SystemBase::pushCard()
 void SystemBase::pop()
 {
 	__cardDictionary.clear();
+}
+
+void SystemBase::save()
+{
+	ofstream fout;
+	for (auto pair : __cardDictionary)
+	{
+		fout.open(string("./file/card/" + pair.first + ".dat"), ios::binary);
+		if (fout)
+		{
+			/* 将基类指针安全转换为派生类指针 */
+			shared_ptr<Card> basePtr = pair.second;
+			if (basePtr->getClassName() == "Campus_Card")
+			{
+				shared_ptr<Campus_Card> campusPtr
+					(dynamic_pointer_cast<Campus_Card>(basePtr));
+				fout.write(reinterpret_cast<char*>(campusPtr.get()), sizeof *campusPtr);
+			}
+			else if(basePtr->getClassName() == "Deposit_Card")
+			{
+				shared_ptr<Deposit_Card> depositPtr
+					(dynamic_pointer_cast<Deposit_Card>(basePtr));
+				fout.write(reinterpret_cast<char*>(depositPtr.get()), sizeof *depositPtr);
+			}
+			else if (basePtr->getClassName() == "Binding_Card")
+			{
+				shared_ptr<Binding_Card> bindingPtr
+					(dynamic_pointer_cast<Binding_Card>(basePtr));
+				fout.write(reinterpret_cast<char*>(bindingPtr.get()), sizeof *bindingPtr);
+			}
+		}
+		fout.close();
+	}
+}
+
+void SystemBase::load()
+{
+	ifstream fin;
+	fin.open("./file/card/1000.dat", ios::binary);
+	if (fin)
+	{
+		Deposit_Card receiver;
+		fin.read(reinterpret_cast<char*>(&receiver), sizeof Binding_Card);
+		cout << receiver.getCardholderName() << endl;
+	}
 }
 
 int SystemBase::getValidNumber(const int begin, const int end)
