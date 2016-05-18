@@ -1,15 +1,18 @@
 #pragma once
 #include "Binding_Card.h"
 #include <memory>
-#include <vector>
-class CardSystem
+#include <string>
+#include <map>
+class SystemBase
 {
 public:
-	static void displayWelcome();
+	virtual ~SystemBase();
+	virtual void displayWelcome() = 0;
+	virtual void displayFunction() = 0;
 
 	void pushCard();
 	void pop();
 private:
-	std::vector<std::shared_ptr<Card> > __system;
-
+	std::map<std::string, std::shared_ptr<Card> > __cardDictionary;
+	static int getValidNumber(const int begin, const int end);
 };

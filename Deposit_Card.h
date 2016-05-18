@@ -4,7 +4,7 @@ class Deposit_Card:virtual public Card
 {
 public:
 	/* constructor & destructor */
-	Deposit_Card(const std::string& cardID,
+	Deposit_Card(
 		const std::string& issueDate,
 		const std::string& holderName,
 		double balance,

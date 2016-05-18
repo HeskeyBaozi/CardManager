@@ -2,15 +2,17 @@
 using namespace std;
 
 
-Binding_Card::Binding_Card(const string& cardID,
+Binding_Card::Binding_Card(
 	const string& issueDate,
 	const string& studentID,
 	const string& holderName,
 	const string& school,
 	double balance, double overdraft)
-	:Campus_Card(cardID, issueDate, holderName, balance, studentID, school),
-	Deposit_Card(cardID, issueDate, holderName, balance, overdraft),
-	Card(cardID, issueDate, holderName, balance)
+	:Campus_Card(issueDate, holderName, 
+		balance, studentID, school),
+	Deposit_Card(issueDate, holderName, 
+		balance, overdraft),
+	Card(issueDate, holderName, balance)
 {
 }
 

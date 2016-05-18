@@ -12,7 +12,5 @@ int main()
 	CardSystem sys;
 	sys.displayWelcome();
 	sys.pushCard();
-	cout << "ok" << endl;
-	sys.pop();
 	return 0;
 }

@@ -6,8 +6,12 @@ Campus_Card::~Campus_Card()
 	cout << this->getStudentID() << " É¾³ıÁË" << endl;
 }
 
-Campus_Card::Campus_Card(const std::string& cardID, const std::string& issueDate, const std::string& holderName, double balance, const std::string& studentID, const std::string& school)
-	:Card(cardID, issueDate, holderName, balance)
+Campus_Card::Campus_Card(const std::string& issueDate,
+	const std::string& holderName, 
+	double balance, 
+	const std::string& studentID, 
+	const std::string& school)
+	:Card(issueDate, holderName, balance)
 {
 	setStudentID(studentID);
 	setSchool(school);

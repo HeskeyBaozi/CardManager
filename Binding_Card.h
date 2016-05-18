@@ -6,7 +6,7 @@ class Binding_Card
 {
 public:
 	/* constructor & destructor */
-	Binding_Card(const std::string& cardID,
+	Binding_Card(
 		const std::string& issueDate, 
 		const std::string& studentID, 
 		const std::string& holderName, 

@@ -1,23 +1,20 @@
 #include "Card.h"
 using namespace std;
 
-Card::Card(const std::string& cardID, const std::string& issueDate, const std::string& holderName, double balance)
+Card::Card(const std::string& issueDate, const std::string& holderName, double balance)
 {
-	setCardID(cardID);
 	setCardholderName(holderName);
 	setIssueDate(issueDate);
 	setBalance(balance);
+	cout << "恭喜您, 卡办理成功!" << endl;
+	cout << "持卡人: " << getCardholderName() << " | 发卡日期: " << getIssueDate() << endl;
 }
 
 Card::~Card()
 {
+	cout << "注销了 " << getCardholderName() << " 的卡" 
+		<< endl;
 }
-
-inline std::string Card::getCardID() const
-{
-	return __cardID;
-}
-
 inline std::string Card::getIssueDate() const
 {
 	return __issueDate;
@@ -31,11 +28,6 @@ inline std::string Card::getCardholderName() const
 double Card::getBalance() const
 {
 	return __balance;
-}
-
-inline void Card::setCardID(const std::string& cardID)
-{
-	__cardID = cardID;
 }
 
 inline void Card::setIssueDate(const std::string& issueDate)

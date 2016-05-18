@@ -5,7 +5,7 @@ class Campus_Card:virtual public Card
 {
 public:
 	/* constructor & destructor */
-	Campus_Card(const std::string& cardID,
+	Campus_Card(
 		const std::string& issueDate,
 		const std::string& holderName,
 		double balance,

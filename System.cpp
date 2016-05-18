@@ -1,12 +1,11 @@
 #include "System.h"
 using namespace std;
 
-void CardSystem::displayWelcome()
+SystemBase::~SystemBase()
 {
-	cout << "======= 欢迎使用 =======" << endl;
 }
 
-void CardSystem::pushCard()
+void SystemBase::pushCard()
 {
 	/* 获得办卡时间 */
 	time_t issueDate = time(nullptr);
@@ -33,6 +32,8 @@ void CardSystem::pushCard()
 	cin.clear();
 	switch (myChoose)
 	{
+
+	/* 生成校园卡 */
 	case 1:
 	{
 		/* 获取学号 */
@@ -48,27 +49,93 @@ void CardSystem::pushCard()
 		/* 创建基类智能指针指向派生类(动态绑定) */
 		shared_ptr<Card> smartPoint(
 			new Campus_Card
-			(myCardID, dateString, myName,
+			(dateString, myName,
 				myBalance, myStudentID, mySchool));
 
-		/* 将智能指针压入卡栈中 */
-		__system.push_back(smartPoint);
+		/* 将智能指针压入卡字典中 */
+		__cardDictionary.emplace(myCardID, smartPoint);
 		break;
 	}
-	case 2:
-		// todo
-		break;
-	case 3:
-		// todo
-		break;
-	default:
-		// todo
-		break;
 
+	/* 生成储蓄卡 */
+	case 2:
+	{
+		/* 获取透支额度 */
+		cout << "您的透支额度?" << endl;
+		double myOverdraft = 0.0;
+		cin >> myOverdraft;
+		cin.ignore();
+		cin.clear();
+
+		/* 创建基类智能指针指向派生类(动态绑定) */
+		shared_ptr<Card> smartPoint(
+			new Deposit_Card
+			(dateString, myName,
+				myBalance, myOverdraft));
+
+		/* 将智能指针压入卡字典中 */
+		__cardDictionary.emplace(myCardID, smartPoint);
+		break;
+	}
+
+	/* 生成绑定卡 */
+	case 3:
+	{
+		/* 获取学号 */
+		cout << "您的学号?" << endl;
+		string myStudentID;
+		getline(cin, myStudentID, '\n');
+
+		/* 获取学院 */
+		cout << "您的学院?" << endl;
+		string mySchool;
+		getline(cin, mySchool, '\n');
+
+		/* 获取透支额度 */
+		cout << "您的透支额度?" << endl;
+		double myOverdraft = 0.0;
+		cin >> myOverdraft;
+		cin.ignore();
+		cin.clear();
+
+		/* 创建基类智能指针指向派生类(动态绑定) */
+		shared_ptr<Card> smartPoint(
+			new Binding_Card
+			(dateString, myStudentID,
+				myName, mySchool, myBalance, myOverdraft));
+
+		/* 将智能指针压入卡字典中 */
+		__cardDictionary.emplace(myCardID, smartPoint);
+		break;
+	}
+
+	/* 选择错误 */
+	default:
+		cout << "选择错误, 办理卡失败" << endl;
+		break;
 	}
 }
 
-void CardSystem::pop()
+void SystemBase::pop()
 {
-	__system.pop_back();
+	__cardDictionary.clear();
+}
+
+int SystemBase::getValidNumber(const int begin, const int end)
+{
+	cout << "请输入选择的数字:" << endl;
+	cout << ">>> ";
+	int myNumber = -1;
+	cin >> myNumber;
+	cin.ignore();
+	cin.clear();
+	while (!(myNumber >= begin&&myNumber < end))
+	{
+		cout << "输入无效, 请重新输入数字: " << endl;
+		cout << ">>> ";
+		cin >> myNumber;
+		cin.ignore();
+		cin.clear();
+	}
+	return myNumber;
 }
