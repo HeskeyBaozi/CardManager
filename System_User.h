@@ -9,5 +9,5 @@ public:
 	void displayFunction() override;
 
 	/* ฯ๛ทั */
-private:
+	std::shared_ptr<Card> User_ptr;
 };

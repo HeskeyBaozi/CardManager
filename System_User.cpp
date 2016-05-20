@@ -2,9 +2,17 @@
 using namespace std;
 
 UserSystem::UserSystem()
-	:SystemBase()
 {
 	UserSystem::displayWelcome();
+	string cardID;
+	cout << "请输入你的卡号, 亲爱的用户" << endl;
+	getline(cin, cardID, '\n');
+	while (__cardDictionary.find(cardID) == __cardDictionary.end())
+	{
+		cout << "对不起, 卡号不存在, 重新输入你的卡号, 亲爱的用户" << endl;
+		getline(cin, cardID, '\n');
+	}
+	User_ptr = __cardDictionary.at(cardID);
 }
 
 void UserSystem::displayWelcome()

@@ -14,7 +14,7 @@ SystemBase::~SystemBase()
 
 void SystemBase::save()
 {
-	ofstream fout, fout_r; "/n";
+	ofstream fout, fout_r;
 	fout.open("./file/Fast-CardInfo.json", ios::out);
 	if (fout)
 	{

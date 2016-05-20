@@ -28,7 +28,27 @@ Campus_Card::Campus_Card(const Json::Value& json)
 
 void Campus_Card::pay()
 {
-	cout << "Call pay() from Campus" << endl;
+	cout << "你好, " << getCardholderName() << ", 欢迎使用校园卡部分支付" << endl;
+	Item temp = createConsumeItem();
+	if (temp.getHowMuch() >= this->getBalance())
+	{
+		cout << "请确认你的消费信息:" << endl;
+		cout << temp.toJson().toStyledString() << "一共消费 " << temp.getHowMuch() << " 元" << endl;
+		cout << "输入: [ok] 确认, 输入其他任意串取消" << endl;
+		string answer;
+		if (answer == "ok")
+		{
+			this->setBalance(getBalance() - temp.getHowMuch());
+			this->_record.append(temp.toJson());
+			cout << "成功支付" << endl;			
+		}
+		cout << "成功取消" << endl;
+	}else
+	{
+		cout << "对不起, 钱不够, 再看:)" << endl;
+	}
+	/* fixme */
+	cout << _record.toStyledString() << endl;
 }
 
 Json::Value Campus_Card::toJson()

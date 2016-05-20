@@ -4,6 +4,8 @@
 #include <ctime>
 #include <memory>
 #include <string>
+class Item;
+
 class Card
 {
 public:
@@ -33,6 +35,10 @@ public:
 
 	virtual std::string getClassName();
 
+protected:
+	Json::Value _record;
+	static Item createConsumeItem();
+
 private:
 	/*
 	*  __issueDate: ·¢¿¨ÈÕÆÚ
@@ -42,4 +48,22 @@ private:
 	std::string __issueDate;
 	std::string __holderName;
 	double __balance;
+
+
+};
+
+class Item
+{
+public:
+	Item();
+	explicit Item(const Json::Value& itemObj);
+
+	Json::Value toJson() const;
+	double getHowMuch() const;
+private:
+	std::string _when;
+	std::string _where;
+	std::string _what;
+	int _howMany;
+	double _price;
 };

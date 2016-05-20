@@ -24,12 +24,18 @@ return 0;
 
 int main()
 {
-
-	AdminSystem sys;
-
-	Json::StyledWriter writer;
-	cout << writer.write(sys.toJson()) << endl;
-
-
+	UserSystem sys;
+	sys.displayFunction();
+	int myChoose = sys.getValidNumber(0, 3);
+	while(myChoose != 0)
+	{
+		switch(myChoose)
+		{
+		case 1:
+			cout << sys.User_ptr->toJson().toStyledString() << endl;;
+			break;
+		}
+		myChoose = sys.getValidNumber(0, 3);
+	}
 	return 0;
 }
