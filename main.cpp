@@ -24,21 +24,12 @@ return 0;
 
 int main()
 {
-	string whoAmI;
-	cout << "ÇëÊäÈë¿ÚÁî?" << endl;
-	cin >> whoAmI;
-	cin.ignore();
-	cin.clear();
-	if (whoAmI == "Admin")
-	{
-		AdminSystem sys;
-		sys.pushCard();
-		Json::StyledWriter writer;
-		cout << writer.write(sys.toJson()) << endl;
-	}
-	if (whoAmI == "User")
-	{
-		UserSystem sys;
-	}
+
+	AdminSystem sys;
+
+	Json::StyledWriter writer;
+	cout << writer.write(sys.toJson()) << endl;
+
+
 	return 0;
 }

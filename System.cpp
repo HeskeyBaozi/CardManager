@@ -14,23 +14,39 @@ SystemBase::~SystemBase()
 
 void SystemBase::save()
 {
-	ofstream fout, fout_r;
+	ofstream fout, fout_r; "/n";
 	fout.open("./file/Fast-CardInfo.json", ios::out);
 	if (fout)
 	{
 		Json::FastWriter writer;
 		fout << writer.write(toJson());
 	}
+	fout.close();
 	fout_r.open("./file/Styled-CardInfo.json", ios::out);
 	if(fout_r)
 	{
 		Json::StyledWriter writer;
 		fout_r << writer.write(toJson());
 	}
+	fout_r.close();
 }
 
 void SystemBase::load()
 {
+	ifstream fin;
+	fin.open("./file/Fast-CardInfo.json", ios::in);
+	if(fin)
+	{
+		string line;
+		Json::Value dictObj;
+		getline(fin, line, '\n');
+		Json::Reader reader;
+		reader.parse(line, dictObj);
+		if (dictObj.isObject())
+		{
+			pushJson(dictObj);
+		}
+	}
 }
 
 Json::Value SystemBase::toJson()
@@ -52,27 +68,35 @@ Json::Value SystemBase::toJson()
 
 void SystemBase::pushJson(const Json::Value& json)
 {
-	for (const auto& cardObj : json)
+	const auto members = json.getMemberNames();
+	for(const auto& cardIDString :members)
 	{
-		if (!cardObj["cardID"].isNull())
+		Json::Value cardObj = json[cardIDString];
+		if (cardObj.isObject())
 		{
-			string cardID = cardObj["cardID"].asString();
+			string cardID = cardIDString;
+
 			bool isCampus = !cardObj["studentID"].isNull() && !cardObj["school"].isNull();
 			bool isDeposit = !cardObj["overdraft"].isNull();
 			bool isBinding = isCampus&&isDeposit;
-			shared_ptr<Card> smart_ptr;
-			if(isBinding)
+
+			if (isBinding)
 			{
-				smart_ptr = dynamic_pointer_cast<Card>(make_shared<Binding_Card>(new Binding_Card(cardObj)));
-			}else if(isCampus)
-			{
-				smart_ptr = dynamic_pointer_cast<Card>(make_shared<Campus_Card>(new Campus_Card(cardObj)));
-			}else if(isDeposit)
-			{
-				smart_ptr = dynamic_pointer_cast<Card>(make_shared<Deposit_Card>(new Deposit_Card(cardObj)));
+				shared_ptr<Card> smart_ptr(new Binding_Card(cardObj));
+				__cardDictionary.emplace(cardID, smart_ptr);
 			}
-			__cardDictionary.emplace(cardID, smart_ptr);
-		}		
+			else if (isCampus)
+			{
+				shared_ptr<Card> smart_ptr(new Campus_Card(cardObj));
+				__cardDictionary.emplace(cardID, smart_ptr);
+			}
+			else if (isDeposit)
+			{
+				shared_ptr<Card> smart_ptr(new Deposit_Card(cardObj));
+				__cardDictionary.emplace(cardID, smart_ptr);
+			}
+
+		}
 	}
 }
 
