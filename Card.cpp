@@ -10,17 +10,25 @@ Card::Card(const std::string& issueDate, const std::string& holderName, double b
 	cout << "持卡人: " << getCardholderName() << " | 发卡日期: " << getIssueDate() << endl;
 }
 
+Card::Card(const Json::Value& json)
+{
+	setIssueDate(json["issueDate"].asString());
+	setCardholderName(json["holderName"].asString());
+	setBalance(json["balance"].asDouble());
+}
+
 Card::~Card()
 {
 	cout << "注销了 " << getCardholderName() << " 的卡" 
 		<< endl;
 }
-inline std::string Card::getIssueDate() const
+
+std::string Card::getIssueDate() const
 {
 	return __issueDate;
 }
 
-inline std::string Card::getCardholderName() const
+std::string Card::getCardholderName() const
 {
 	return __holderName;
 }
@@ -30,17 +38,17 @@ double Card::getBalance() const
 	return __balance;
 }
 
-inline void Card::setIssueDate(const std::string& issueDate)
+void Card::setIssueDate(const std::string& issueDate)
 {
 	__issueDate = issueDate;
 }
 
-inline void Card::setCardholderName(const std::string& holderName)
+void Card::setCardholderName(const std::string& holderName)
 {
 	__holderName = holderName;
 }
 
-inline void Card::setBalance(double balance)
+void Card::setBalance(double balance)
 {
 	__balance = balance;
 }

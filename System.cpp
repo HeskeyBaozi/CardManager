@@ -1,168 +1,78 @@
 #include "System.h"
 using namespace std;
+typedef Json::Value var;
+
+SystemBase::SystemBase()
+{
+	load();
+}
 
 SystemBase::~SystemBase()
 {
-}
-
-void SystemBase::pushCard()
-{
-	/* 获得办卡时间 */
-	time_t issueDate = time(nullptr);
-	string dateString = ctime(&issueDate);
-
-	/* 获取持卡人姓名 */
-	cout << "您的姓名?" << endl;
-	string myName;
-	getline(cin, myName, '\n');
-
-	/* 获取卡号 */
-	cout << "您的卡号?" << endl;
-	string myCardID;
-	getline(cin, myCardID, '\n');
-
-	/* 卡内余额为0 */
-	double myBalance = 0.0;
-
-	cout << "请输入想办理的卡类?" << endl;
-	int myChoose = 0;
-	cout << "[1] 校园卡\n[2] 储蓄卡\n[3] 绑定卡" << endl;
-	cin >> myChoose;
-	cin.ignore();
-	cin.clear();
-	switch (myChoose)
-	{
-
-		/* 生成校园卡 */
-	case 1:
-	{
-		/* 获取学号 */
-		cout << "您的学号?" << endl;
-		string myStudentID;
-		getline(cin, myStudentID, '\n');
-
-		/* 获取学院 */
-		cout << "您的学院?" << endl;
-		string mySchool;
-		getline(cin, mySchool, '\n');
-
-		/* 创建基类智能指针指向派生类(动态绑定) */
-		shared_ptr<Card> smartPoint(
-			new Campus_Card
-			(dateString, myName,
-				myBalance, myStudentID, mySchool));
-
-		/* 将智能指针压入卡字典中 */
-		__cardDictionary.emplace(myCardID, smartPoint);
-		break;
-	}
-
-	/* 生成储蓄卡 */
-	case 2:
-	{
-		/* 获取透支额度 */
-		cout << "您的透支额度?" << endl;
-		double myOverdraft = 0.0;
-		cin >> myOverdraft;
-		cin.ignore();
-		cin.clear();
-
-		/* 创建基类智能指针指向派生类(动态绑定) */
-		shared_ptr<Card> smartPoint(
-			new Deposit_Card
-			(dateString, myName,
-				myBalance, myOverdraft));
-
-		/* 将智能指针压入卡字典中 */
-		__cardDictionary.emplace(myCardID, smartPoint);
-		break;
-	}
-
-	/* 生成绑定卡 */
-	case 3:
-	{
-		/* 获取学号 */
-		cout << "您的学号?" << endl;
-		string myStudentID;
-		getline(cin, myStudentID, '\n');
-
-		/* 获取学院 */
-		cout << "您的学院?" << endl;
-		string mySchool;
-		getline(cin, mySchool, '\n');
-
-		/* 获取透支额度 */
-		cout << "您的透支额度?" << endl;
-		double myOverdraft = 0.0;
-		cin >> myOverdraft;
-		cin.ignore();
-		cin.clear();
-
-		/* 创建基类智能指针指向派生类(动态绑定) */
-		shared_ptr<Card> smartPoint(
-			new Binding_Card
-			(dateString, myStudentID,
-				myName, mySchool, myBalance, myOverdraft));
-
-		/* 将智能指针压入卡字典中 */
-		__cardDictionary.emplace(myCardID, smartPoint);
-		break;
-	}
-
-	/* 选择错误 */
-	default:
-		cout << "选择错误, 办理卡失败" << endl;
-		break;
-	}
-}
-
-void SystemBase::pop()
-{
-	__cardDictionary.clear();
+	save();
 }
 
 void SystemBase::save()
 {
-	ofstream fout;
-	for (auto pair : __cardDictionary)
+	ofstream fout, fout_r;
+	fout.open("./file/Fast-CardInfo.json", ios::out);
+	if (fout)
 	{
-		fout.open(string("./file/card/" + pair.first + ".dat"), ios::binary);
-		if (fout)
-		{
-			/* 将基类指针安全转换为派生类指针 */
-			shared_ptr<Card> basePtr = pair.second;
-			if (basePtr->getClassName() == "Campus_Card")
-			{
-				shared_ptr<Campus_Card> campusPtr
-					(dynamic_pointer_cast<Campus_Card>(basePtr));
-				fout.write(reinterpret_cast<char*>(campusPtr.get()), sizeof *campusPtr);
-			}
-			else if(basePtr->getClassName() == "Deposit_Card")
-			{
-				shared_ptr<Deposit_Card> depositPtr
-					(dynamic_pointer_cast<Deposit_Card>(basePtr));
-				fout.write(reinterpret_cast<char*>(depositPtr.get()), sizeof *depositPtr);
-			}
-			else if (basePtr->getClassName() == "Binding_Card")
-			{
-				shared_ptr<Binding_Card> bindingPtr
-					(dynamic_pointer_cast<Binding_Card>(basePtr));
-				fout.write(reinterpret_cast<char*>(bindingPtr.get()), sizeof *bindingPtr);
-			}
-		}
-		fout.close();
+		Json::FastWriter writer;
+		fout << writer.write(toJson());
+	}
+	fout_r.open("./file/Styled-CardInfo.json", ios::out);
+	if(fout_r)
+	{
+		Json::StyledWriter writer;
+		fout_r << writer.write(toJson());
 	}
 }
 
 void SystemBase::load()
 {
-	ifstream fin;
-	fin.open("./file/card/1000.dat", ios::binary);
-	if (fin)
+}
+
+Json::Value SystemBase::toJson()
+{
+	/* 整个卡字典 */
+	var dict;
+	for(const auto& pair :__cardDictionary)
 	{
-		Deposit_Card receiver;
-		fin.read(reinterpret_cast<char*>(&receiver), sizeof Binding_Card);
-		cout << receiver.getCardholderName() << endl;
+		/* 将卡片对象添加到卡字典 
+		*
+		*   key: cardID
+		* value: 该卡片的json对象
+		*/
+		var value(pair.second->toJson());
+		dict[pair.first] = value;
+	}
+	return dict;
+}
+
+void SystemBase::pushJson(const Json::Value& json)
+{
+	for (const auto& cardObj : json)
+	{
+		if (!cardObj["cardID"].isNull())
+		{
+			string cardID = cardObj["cardID"].asString();
+			bool isCampus = !cardObj["studentID"].isNull() && !cardObj["school"].isNull();
+			bool isDeposit = !cardObj["overdraft"].isNull();
+			bool isBinding = isCampus&&isDeposit;
+			shared_ptr<Card> smart_ptr;
+			if(isBinding)
+			{
+				smart_ptr = dynamic_pointer_cast<Card>(make_shared<Binding_Card>(new Binding_Card(cardObj)));
+			}else if(isCampus)
+			{
+				smart_ptr = dynamic_pointer_cast<Card>(make_shared<Campus_Card>(new Campus_Card(cardObj)));
+			}else if(isDeposit)
+			{
+				smart_ptr = dynamic_pointer_cast<Card>(make_shared<Deposit_Card>(new Deposit_Card(cardObj)));
+			}
+			__cardDictionary.emplace(cardID, smart_ptr);
+		}		
 	}
 }
 

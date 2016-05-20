@@ -5,20 +5,22 @@ class Campus_Card:virtual public Card
 {
 public:
 	/* constructor & destructor */
-	Campus_Card(
+	explicit Campus_Card(
 		const std::string& issueDate = "None",
 		const std::string& holderName = "None",
 		double balance = 0.0,
 		const std::string& studentID = "None",
 		const std::string& school = "None");
+	explicit Campus_Card(const Json::Value& json);
 	~Campus_Card() override;
 
 	/* pay & query */
 	void query() override;
 	void pay() override;
 
-	/* to Json */
-	//virtual Json::Value toJson();
+	/* Json */
+	Json::Value toJson() override;
+	std::shared_ptr<Card> toCard(const Json::Value& json) override;
 	
 	/* Getter & Setter */
 	std::string getStudentID() const;

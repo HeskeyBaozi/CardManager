@@ -8,18 +8,16 @@
 class SystemBase
 {
 public:
+	SystemBase();
 	virtual ~SystemBase();
 	virtual void displayWelcome() = 0;
 	virtual void displayFunction() = 0;
+	void save();
+	void load();
 
-	void pushCard();
-	void pop();
-
-	virtual void save();
-	virtual void load();
-
-
-private:
+	Json::Value toJson();
+	void pushJson(const Json::Value& json);
+protected:
 	std::map<std::string, std::shared_ptr<Card> > __cardDictionary;
 	static int getValidNumber(const int begin, const int end);
 };

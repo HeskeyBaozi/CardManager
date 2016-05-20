@@ -9,6 +9,7 @@ public:
 		const std::string& holderName = "",
 		double balance = 0.0,
 		double overdraft = 0.0);
+	explicit Deposit_Card(const Json::Value& json);
 	~Deposit_Card() override;
 
 	/* deposit in*/
@@ -22,7 +23,8 @@ public:
 	void query() override;
 
 	/* to Json */
-	//virtual Json::Value toJson();
+	Json::Value toJson() override;
+	std::shared_ptr<Card> toCard(const Json::Value& json) override;
 
 	/* Getter & Setter */
 	double getOverdraft() const;

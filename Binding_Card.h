@@ -13,23 +13,15 @@ public:
 		const std::string& school = "None",
 		double balance = 0.0, 
 		double overdraft = 0.0);
+	explicit Binding_Card(const Json::Value& json);
 	~Binding_Card() override;
 
 	void query() override;
 	void pay() override;
 
-	/* to Json */
-	/* Json ½á¹¹:
-	*  string issueDate
-	*  
-	*
-	*
-	*
-	*
-	*
-	*
-	*/
+	/* Json */
 	Json::Value toJson() override;
+	std::shared_ptr<Card> toCard(const Json::Value& json) override;
 
 
 	std::string getClassName() override;

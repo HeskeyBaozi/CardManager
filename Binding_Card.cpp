@@ -16,6 +16,11 @@ Binding_Card::Binding_Card(
 {
 }
 
+Binding_Card::Binding_Card(const Json::Value& json)
+	:Card(json),Campus_Card(json),Deposit_Card(json)
+{
+}
+
 Binding_Card::~Binding_Card()
 {
 }
@@ -40,6 +45,34 @@ Json::Value Binding_Card::toJson()
 	object["school"] = Json::Value(getSchool());
 	object["overdraft"] = Json::Value(getOverdraft());
 	return object;
+}
+
+std::shared_ptr<Card> Binding_Card::toCard(const Json::Value& json)
+{
+	/* 基类卡信息 */
+	string issueDate = "None";
+	string holderName = "None";
+	double balance = 0.0;
+
+	/* 校园卡信息 */
+	string studentID = "None";
+	string school = "None";
+
+	/* 储蓄卡信息 */
+	double overdraft = 0.0;
+
+	/* json读入信息 */
+	issueDate = json["issueDate"].asString();
+	holderName = json["holderName"].asString();
+	balance = json["balance"].asDouble();
+	studentID = json["studentID"].asString();
+	school = json["school"].asString();
+	overdraft = json["overdraft"].asDouble();
+
+	/* 创建卡片对象智能指针 */
+	shared_ptr<Card> smart_ptr
+		(new Binding_Card(issueDate, studentID, holderName, school, balance, overdraft));
+	return smart_ptr;
 }
 
 std::string Binding_Card::getClassName()
