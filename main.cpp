@@ -3,16 +3,25 @@
 #include "System_Admin.h"
 using namespace std;
 
-void Print(Card& input)
+void Print()
 {
-	input.pay();
+	cout << "\n　　　　　　　　  .★*★..\n";
+	cout << "　　.*★　*.　*..*　　　★\n";
+	cout << "　　★　　　　　　　   ★\n";
+	cout << "　　‘*.*'　　　　　‘*\n";
+	cout << "　　　　‘★.　　　 ★’\n";
+	cout << "　　　　　　‘*.. ★\n";
+	cout << "　　　　　　　　★\n\n";
+	cout << "      欢迎使用, 前排围观ing\n" << endl;
+	cout << "=======================================\n" << endl;
 }
 
 int main()
 {
+	Print();
 	string cardID;
 	cout << "请输入你的卡号, 亲爱的用户(输入quit退出):" << endl;
-	cout << "输入admin进入管理员模式!" << endl;
+	cout << "【输入admin进入管理员模式!】" << endl;
 	cout << ">>> ";
 	getline(cin, cardID, '\n');
 	while(cardID != "quit")
@@ -63,7 +72,7 @@ int main()
 			}
 
 		}
-		cout << "请输入你的卡号, 亲爱的用户(输入quit退出):" << endl;
+		cout << "你可以再次输入卡号 或者 输入quit结束程序" << endl;
 		cout << ">>> ";
 		getline(cin, cardID, '\n');
 	}	
