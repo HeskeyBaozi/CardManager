@@ -10,15 +10,17 @@ class Card
 {
 public:
 	/* constructor & destructor */
-	explicit Card(const std::string& issueDate = "",
-		const std::string& holderName = "",
-		double balance = 0.0);
+	explicit Card(const std::string& issueDate,
+		const std::string& holderName = "None");
 	explicit Card(const Json::Value& json);
 	virtual ~Card();
 	
 	/* query & pay */
 	virtual void query() = 0;
 	virtual void pay() = 0;
+
+	/* receive Money */
+	virtual void receiveMoney(const double money) = 0;
 
 	/* Json */
 	virtual Json::Value toJson() = 0;
@@ -27,17 +29,18 @@ public:
 	/* Getter & Setter */
 	std::string getIssueDate() const;
 	std::string getCardholderName() const;
-	double getBalance() const;
+	
 
 	void setIssueDate(const std::string& issueDate);
 	void setCardholderName(const std::string& holderName);
-	void setBalance(double balance);
+
 
 	virtual std::string getClassName();
 
 protected:
 	Json::Value _record;
 	static Item createConsumeItem();
+	static bool confirm();
 
 private:
 	/*
@@ -47,8 +50,6 @@ private:
 	*/
 	std::string __issueDate;
 	std::string __holderName;
-	double __balance;
-
 
 };
 
@@ -67,3 +68,5 @@ private:
 	int _howMany;
 	double _price;
 };
+
+int getValidNumber(const int begin, const int end);

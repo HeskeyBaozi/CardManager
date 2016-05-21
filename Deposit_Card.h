@@ -1,5 +1,7 @@
 #pragma once
 #include "Card.h"
+
+
 class Deposit_Card:virtual public Card
 {
 public:
@@ -22,14 +24,20 @@ public:
 	void pay() override;
 	void query() override;
 
+	/* receive Money */
+	void receiveMoney(const double money) override;
+
 	/* to Json */
 	Json::Value toJson() override;
 	std::shared_ptr<Card> toCard(const Json::Value& json) override;
 
 	/* Getter & Setter */
 	double getOverdraft() const;
+	double getBalance() const;
 
 	void setOverdraft(double overdraft);
+	void setBalance(double balance);
+
 
 	std::string getClassName() override;
 private:
@@ -37,4 +45,5 @@ private:
 	* __overdraft: Í¸Ö§¶î¶È
 	*/
 	double __overdraft;
+	double __balance;
 };

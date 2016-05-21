@@ -4,18 +4,18 @@ typedef Json::Value var;
 
 Campus_Card::~Campus_Card()
 {
-	cout << this->getStudentID() << " 删除了" << endl;
 }
 
 Campus_Card::Campus_Card(const std::string& issueDate,
-	const std::string& holderName, 
-	double balance, 
-	const std::string& studentID, 
+	const std::string& holderName,
+	double balance,
+	const std::string& studentID,
 	const std::string& school)
-	:Card(issueDate, holderName, balance)
+	:Card(issueDate, holderName)
 {
 	setStudentID(studentID);
 	setSchool(school);
+	setBalance(balance);
 	cout << holderName << ' ' << studentID << " 的校园卡创建了" << endl;
 }
 
@@ -24,6 +24,11 @@ Campus_Card::Campus_Card(const Json::Value& json)
 {
 	setStudentID(json["studentID"].asString());
 	setSchool(json["school"].asString());
+	if (json["balance"].isArray())
+	{
+		setBalance(json["balance"][0].asDouble());
+	}
+	else setBalance(json["balance"].asDouble());
 }
 
 void Campus_Card::pay()
@@ -34,21 +39,25 @@ void Campus_Card::pay()
 	{
 		cout << "请确认你的消费信息:" << endl;
 		cout << temp.toJson().toStyledString() << "一共消费 " << temp.getHowMuch() << " 元" << endl;
-		cout << "输入: [ok] 确认, 输入其他任意串取消" << endl;
-		string answer;
-		if (answer == "ok")
+		if (confirm())
 		{
 			this->setBalance(getBalance() - temp.getHowMuch());
 			this->_record.append(temp.toJson());
-			cout << "成功支付" << endl;			
+			cout << "成功支付" << endl;
 		}
 		cout << "成功取消" << endl;
-	}else
+	}
+	else
 	{
 		cout << "对不起, 钱不够, 再看:)" << endl;
 	}
 	/* fixme */
 	cout << _record.toStyledString() << endl;
+}
+
+void Campus_Card::receiveMoney(const double money)
+{
+	setBalance(getBalance() + money);
 }
 
 Json::Value Campus_Card::toJson()
@@ -59,6 +68,7 @@ Json::Value Campus_Card::toJson()
 	object["balance"] = Json::Value(getBalance());
 	object["studentID"] = Json::Value(getStudentID());
 	object["school"] = Json::Value(getSchool());
+	object["record"] = _record;
 	return object;
 }
 
@@ -101,6 +111,11 @@ std::string Campus_Card::getSchool() const
 	return __school;
 }
 
+double Campus_Card::getBalance() const
+{
+	return __balance;
+}
+
 inline void Campus_Card::setStudentID(const std::string& studentID)
 {
 	__studentID = studentID;
@@ -109,6 +124,11 @@ inline void Campus_Card::setStudentID(const std::string& studentID)
 inline void Campus_Card::setSchool(const std::string& school)
 {
 	__school = school;
+}
+
+void Campus_Card::setBalance(double balance)
+{
+	__balance = balance;
 }
 
 std::string Campus_Card::getClassName()

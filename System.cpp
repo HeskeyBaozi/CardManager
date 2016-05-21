@@ -99,22 +99,3 @@ void SystemBase::pushJson(const Json::Value& json)
 		}
 	}
 }
-
-int SystemBase::getValidNumber(const int begin, const int end)
-{
-	cout << "请输入选择的数字:" << endl;
-	cout << ">>> ";
-	int myNumber = -1;
-	cin >> myNumber;
-	cin.ignore();
-	cin.clear();
-	while (!(myNumber >= begin&&myNumber < end))
-	{
-		cout << "输入无效, 请重新输入数字: " << endl;
-		cout << ">>> ";
-		cin >> myNumber;
-		cin.ignore();
-		cin.clear();
-	}
-	return myNumber;
-}

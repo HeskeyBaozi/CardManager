@@ -7,35 +7,65 @@ void Print(Card& input)
 {
 	input.pay();
 }
-/*
-int ParseJsonFromString()
-{
-const char* str = "{\"uploadid\": \"UP000000\",\"code\": 100,\"msg\": \"\",\"files\": \"\"}";
-
-Json::Reader reader;
-Json::Value root;
-if (reader.parse(str, root))  // reader将Json字符串解析到root，root将包含Json里所有子元素
-{
-std::string upload_id = root["uploadid"].asString();  // 访问节点，upload_id = "UP000000"
-int code = root["code"].asInt();    // 访问节点，code = 100
-}
-return 0;
-}*/
 
 int main()
 {
-	UserSystem sys;
-	sys.displayFunction();
-	int myChoose = sys.getValidNumber(0, 3);
-	while(myChoose != 0)
+	string cardID;
+	cout << "请输入你的卡号, 亲爱的用户(输入quit退出):" << endl;
+	cout << "输入admin进入管理员模式!" << endl;
+	cout << ">>> ";
+	getline(cin, cardID, '\n');
+	while(cardID != "quit")
 	{
-		switch(myChoose)
+		if (cardID != "admin")
 		{
-		case 1:
-			cout << sys.User_ptr->toJson().toStyledString() << endl;;
-			break;
+			UserSystem sys(cardID);
+			sys.displayFunction();
+			int myChoose = getValidNumber(0, 4);
+			while (myChoose != 0)
+			{
+				switch (myChoose)
+				{
+				case 1:
+					cout << sys.User_ptr->toJson().toStyledString() << endl;;
+					break;
+				case 2:
+					sys.User_ptr->pay();
+					break;
+				case 3:
+					sys.moneyDeal();
+					break;
+				}
+				sys.displayFunction();
+				myChoose = getValidNumber(0, 4);
+			}
+		}else
+		{
+			AdminSystem sys;
+			sys.displayFunction();
+			int myChoose = getValidNumber(0, 4);
+			while (myChoose != 0)
+			{
+				switch (myChoose)
+				{
+				case 1:
+					cout << sys.toJson().toStyledString() << endl;
+					break;
+				case 2:
+					sys.pushCard();
+					break;
+				case 3:
+					sys.pop();
+					break;
+				}
+				sys.displayFunction();
+				myChoose = getValidNumber(0, 4);
+			}
+
 		}
-		myChoose = sys.getValidNumber(0, 3);
-	}
+		cout << "请输入你的卡号, 亲爱的用户(输入quit退出):" << endl;
+		cout << ">>> ";
+		getline(cin, cardID, '\n');
+	}	
 	return 0;
 }

@@ -4,7 +4,7 @@
 class Binding_Card
 	:public Campus_Card, public Deposit_Card
 {
-public:
+public:	
 	/* constructor & destructor */
 	explicit Binding_Card(
 		const std::string& issueDate = "None",
@@ -18,6 +18,7 @@ public:
 
 	void query() override;
 	void pay() override;
+	void receiveMoney(const double money) override;
 
 	/* Json */
 	Json::Value toJson() override;

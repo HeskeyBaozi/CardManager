@@ -3,11 +3,15 @@ using namespace std;
 
 void AdminSystem::displayWelcome()
 {
-	cout << "欢迎使用, 我的主人!" << endl;
+	cout << "======= 欢迎使用, 我的主人! =======" << endl;
 }
 
 void AdminSystem::displayFunction()
 {
+	cout << "[0] 退出系统\n";
+	cout << "[1] 查看所有卡的信息\n";
+	cout << "[2] 办理卡\n";
+	cout << "[3] 注销卡\n";
 }
 
 void AdminSystem::pushCard()
@@ -123,6 +127,22 @@ void AdminSystem::pushCard()
 
 void AdminSystem::pop()
 {
-	__cardDictionary.clear();
+	cout << "目前系统中中存在的卡的ID有: " << endl;
+	for(const auto& name: this->toJson().getMemberNames())
+	{
+		cout << name << endl;
+	}
+	cout << "\n请输入要注销的卡的ID:(输入quit取消)" << endl;
+	string myAnswer;
+	cout << ">>> ";
+	getline(cin, myAnswer, '\n');
+	if (myAnswer != "quit")
+	{
+		if (__cardDictionary.find(myAnswer) != __cardDictionary.end())
+		{
+			__cardDictionary.erase(myAnswer);
+			cout << "成功注销: " << myAnswer << endl;
+		}
+	}
 }
 

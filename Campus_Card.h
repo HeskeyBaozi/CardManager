@@ -18,6 +18,9 @@ public:
 	void query() override;
 	void pay() override;
 
+	/* receive Money */
+	void receiveMoney(const double money) override;
+
 	/* Json */
 	Json::Value toJson() override;
 	std::shared_ptr<Card> toCard(const Json::Value& json) override;
@@ -25,9 +28,11 @@ public:
 	/* Getter & Setter */
 	std::string getStudentID() const;
 	std::string getSchool() const;
+	double getBalance() const;
 
 	void setStudentID(const std::string& studentID);
 	void setSchool(const std::string& school);
+	void setBalance(double balance);
 
 	std::string getClassName() override;
 
@@ -38,6 +43,7 @@ private:
 	*/
 	std::string __studentID;
 	std::string __school;
+	double __balance;
 };
 
 

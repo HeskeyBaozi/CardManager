@@ -8,16 +8,16 @@ Binding_Card::Binding_Card(
 	const string& holderName,
 	const string& school,
 	double balance, double overdraft)
-	:Campus_Card(issueDate, holderName, 
+	:Card(issueDate,holderName),
+	Campus_Card(issueDate, holderName, 
 		balance, studentID, school),
 	Deposit_Card(issueDate, holderName, 
-		balance, overdraft),
-	Card(issueDate, holderName, balance)
+		balance, overdraft)
 {
 }
 
 Binding_Card::Binding_Card(const Json::Value& json)
-	:Card(json),Campus_Card(json),Deposit_Card(json)
+	:Campus_Card(json),Deposit_Card(json),Card(json)
 {
 }
 
@@ -32,18 +32,42 @@ void Binding_Card::query()
 
 void Binding_Card::pay()
 {
-	cout << "pay() from Binding_Card" << endl;
+	cout << "你好, " << getCardholderName() << ", 欢迎使用绑定卡部分支付" << endl;
+	cout << "校园卡余额: " << Campus_Card::getBalance() << " 元\n";
+	cout << "储蓄卡余额: " << Deposit_Card::getBalance() << " 元\n";
+	cout << "请选择使用哪一种卡支付:\n"
+		<<"[1] 校园卡      | [2] 储蓄卡      | [0] 取消支付" << endl;
+	int myChoose = getValidNumber(0, 3);
+	if(myChoose == 1)
+	{
+		this->Campus_Card::pay();
+	}
+	else if (myChoose == 2)
+	{
+		this->Deposit_Card::pay();
+	}
+}
+
+void Binding_Card::receiveMoney(const double money)
+{
+	Deposit_Card::setBalance(Deposit_Card::getBalance() + money);
 }
 
 Json::Value Binding_Card::toJson()
 {
 	Json::Value object;
-	object["issueDate"] = Json::Value(getIssueDate());
-	object["holderName"] = Json::Value(getCardholderName());
-	object["balance"] = Json::Value(getBalance());
+	object["issueDate"] = Json::Value(Campus_Card::getIssueDate());
+	object["holderName"] = Json::Value(Campus_Card::getCardholderName());
+	
+	Json::Value balanceArray(Json::arrayValue);
+	balanceArray.append(Json::Value(Campus_Card::getBalance()));
+	balanceArray.append(Json::Value(Deposit_Card::getBalance()));
+	object["balance"] = balanceArray;
+
 	object["studentID"] = Json::Value(getStudentID());
 	object["school"] = Json::Value(getSchool());
 	object["overdraft"] = Json::Value(getOverdraft());
+	object["record"] = _record;
 	return object;
 }
 

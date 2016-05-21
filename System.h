@@ -16,11 +16,8 @@ public:
 	void load();
 
 	Json::Value toJson();
-	void pushJson(const Json::Value& json);
-
-	static int getValidNumber(const int begin, const int end);	
+	void pushJson(const Json::Value& json);	
 protected:
 	std::map<std::string, std::shared_ptr<Card> > __cardDictionary;
-	
 	
 };
