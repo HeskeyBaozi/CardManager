@@ -70,11 +70,10 @@ void UserSystem::moneyDeal()
 			if(__cardDictionary.find(cardID)!=__cardDictionary.end())
 			{
 				double money;
-				cout << "请输入要充值的金额:\n>>> ";
+				cout << "请输入要转账的金额:\n>>> ";
 				cin >> money;
 				cin.ignore();
 				cin.clear();
-				ptr->receiveMoney(money);
 				ptr->transfer(*__cardDictionary.at(cardID), money);
 			}			
 		}
@@ -128,7 +127,7 @@ void UserSystem::moneyDeal()
 			if (__cardDictionary.find(cardID) != __cardDictionary.end())
 			{
 				double money;
-				cout << "请输入要充值的金额:\n>>> ";
+				cout << "请输入要转账的金额:\n>>> ";
 				cin >> money;
 				cin.ignore();
 				cin.clear();
@@ -138,5 +137,5 @@ void UserSystem::moneyDeal()
 		}
 		}
 	}
-	cout << "操作完成!\n当前卡的信息:" << User_ptr->toJson().toStyledString() << endl;
+	cout << "操作结束!\n当前卡的信息:" << User_ptr->toJson().toStyledString() << endl;
 }
