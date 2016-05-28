@@ -23,39 +23,39 @@
 
 ## 三. 实验成果
 
-![2](./img/2.jpg)
+![2](./img/2.JPG)
 
-![2](./img/3.jpg)
+![2](./img/3.JPG)
 
-![2](./img/4.jpg)
+![2](./img/4.JPG)
 
-![2](./img/5.jpg)
+![2](./img/5.JPG)
 
-![2](./img/6.jpg)
+![2](./img/6.JPG)
 
-![2](./img/7.jpg)
+![2](./img/7.JPG)
 
-![2](./img/8.jpg)
+![2](./img/8.JPG)
 
-![2](./img/9.jpg)
+![2](./img/9.JPG)
 
-![2](./img/10.jpg)
+![2](./img/10.JPG)
 
-![2](./img/11.jpg)
+![2](./img/11.JPG)
 
-![2](./img/12.jpg)
+![2](./img/12.JPG)
 
-![2](./img/13.jpg)
+![2](./img/13.JPG)
 
-![2](./img/14.jpg)
+![2](./img/14.JPG)
 
-![2](./img/15.jpg)
+![2](./img/15.JPG)
 
-![2](./img/16.jpg)
+![2](./img/16.JPG)
 
-![2](./img/17.jpg)
+![2](./img/17.JPG)
 
-![2](./img/18.jpg)
+![2](./img/18.JPG)
 
 ## 四、设计心得
 OOP程序设计多态性的使用
