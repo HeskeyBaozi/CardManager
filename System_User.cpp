@@ -83,7 +83,7 @@ void UserSystem::moneyDeal()
 		shared_ptr<Binding_Card> ptr = dynamic_pointer_cast<Binding_Card>(User_ptr);
 		cout << "ÇëÊäÈë²Ù×÷" << endl;
 		cout << "[1] ´¢Ðî¿¨Óà¶î×ªµ½Ð£Ô°¿¨      | [2] ´¢Ðî¿¨ÏÖ½ð³äÖµ  | [3] ´¢Ðî¿¨×ªÕË    | [0] ÍË³ö" << endl;
-		int myChoose = getValidNumber(0, 3);
+		int myChoose = getValidNumber(0, 4);
 		switch(myChoose)
 		{
 		case 1:

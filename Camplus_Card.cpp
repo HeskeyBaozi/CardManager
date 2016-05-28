@@ -35,7 +35,7 @@ void Campus_Card::pay()
 {
 	cout << "你好, " << getCardholderName() << ", 欢迎使用校园卡部分支付" << endl;
 	Item temp = createConsumeItem();
-	if (temp.getHowMuch() >= this->getBalance())
+	if (temp.getHowMuch() <= this->getBalance())
 	{
 		cout << "请确认你的消费信息:" << endl;
 		cout << temp.toJson().toStyledString() << "一共消费 " << temp.getHowMuch() << " 元" << endl;
