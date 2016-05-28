@@ -80,7 +80,7 @@ Json::Value Binding_Card::toJson()
 	return object;
 }
 
-std::shared_ptr<Card> Binding_Card::toCard(const Json::Value& json)
+std::shared_ptr<Card> Binding_Card::toCardSmartPtr(const Json::Value& json)
 {
 	/* 基类卡信息 */
 	string issueDate = "None";

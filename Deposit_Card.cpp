@@ -56,26 +56,26 @@ void Deposit_Card::pay()
 {
 	cout << "你好, " << getCardholderName() << ", 欢迎使用储蓄卡部分支付" << endl;
 	Item temp = createConsumeItem();
-	if (temp.getHowMuch() <= this->getBalance())
+	if (temp.getHowMuch() <= this->Deposit_Card::getBalance())
 	{
 		cout << "请确认你的消费信息:" << endl;
 		cout << temp.toJson().toStyledString() << "一共消费 " << temp.getHowMuch() << " 元" << endl;
 		if (confirm())
 		{
-			this->setBalance(getBalance() - temp.getHowMuch());
+			this->Deposit_Card::setBalance(Deposit_Card::getBalance() - temp.getHowMuch());
 			this->_record.append(temp.toJson());
 			cout << "成功支付" << endl;
 		}
 		else cout << "成功取消" << endl;
 	}
-	else if (temp.getHowMuch() <= this->getBalance() + this->getOverdraft())
+	else if (temp.getHowMuch() <= this->Deposit_Card::getBalance() + this->getOverdraft())
 	{
 		cout << "请确认你的消费信息:" << endl;
 		cout << temp.toJson().toStyledString() << "一共消费 " << temp.getHowMuch() << " 元" << endl;
 		cout << "您的卡可以透支支付, 请问是否透支支付?" << endl;
 		if (confirm())
 		{
-			this->setBalance(getBalance() - temp.getHowMuch());
+			this->Deposit_Card::setBalance(Deposit_Card::getBalance() - temp.getHowMuch());
 			this->_record.append(temp.toJson());
 			cout << "成功支付, 余额为负代表透支状态" << endl;
 		}
@@ -112,7 +112,7 @@ Json::Value Deposit_Card::toJson()
 	return object;
 }
 
-shared_ptr<Card> Deposit_Card::toCard(const Json::Value& json)
+shared_ptr<Card> Deposit_Card::toCardSmartPtr(const Json::Value& json)
 {
 	/* 基类卡信息 */
 	string issueDate = "None";

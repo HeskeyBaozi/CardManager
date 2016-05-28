@@ -28,7 +28,7 @@ public:
 
 	/* Json */
 	virtual Json::Value toJson() = 0;
-	virtual std::shared_ptr<Card> toCard(const Json::Value& json) = 0;
+	virtual std::shared_ptr<Card> toCardSmartPtr(const Json::Value& json) = 0;
 
 	/* Getter & Setter */
 	std::string getIssueDate() const;

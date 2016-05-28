@@ -72,7 +72,7 @@ Json::Value Campus_Card::toJson()
 	return object;
 }
 
-shared_ptr<Card> Campus_Card::toCard(const Json::Value& json)
+shared_ptr<Card> Campus_Card::toCardSmartPtr(const Json::Value& json)
 {
 	/* 基类卡信息 */
 	string issueDate = "None";

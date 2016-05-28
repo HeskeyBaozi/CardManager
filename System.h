@@ -18,6 +18,7 @@ public:
 	Json::Value toJson();
 	void pushJson(const Json::Value& json);	
 protected:
-	std::map<std::string, std::shared_ptr<Card> > __cardDictionary;
-	
+	std::map<std::string, std::shared_ptr<Card> > __cardDictionary;	
 };
+
+

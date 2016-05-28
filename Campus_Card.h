@@ -23,7 +23,7 @@ public:
 
 	/* Json */
 	Json::Value toJson() override;
-	std::shared_ptr<Card> toCard(const Json::Value& json) override;
+	std::shared_ptr<Card> toCardSmartPtr(const Json::Value& json) override;
 	
 	/* Getter & Setter */
 	std::string getStudentID() const;

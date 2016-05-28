@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Binding_Card" Collapsed="true">
+    <Position X="3" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAACCAAgACAAAAAAAAQgAAAgAAAAAAAKAAAAAAA=</HashCode>
+      <FileName>Binding_Card.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Campus_Card" Collapsed="true">
+    <Position X="1.75" Y="2" Width="2.25" />
+    <Members>
+      <Method Name="getClassName" Hidden="true" />
+      <Method Name="getSchool" Hidden="true" />
+      <Method Name="getStudentID" Hidden="true" />
+      <Method Name="setSchool" Hidden="true" />
+      <Method Name="setStudentID" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAACAAAgAAAAACAgAAQgAABgABAEAAAKAiACAEA=</HashCode>
+      <FileName>Campus_Card.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Deposit_Card" Collapsed="true">
+    <Position X="4.25" Y="2" Width="2.25" />
+    <Members>
+      <Method Name="getClassName" Hidden="true" />
+      <Method Name="getOverdraft" Hidden="true" />
+      <Method Name="setOverdraft" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EMAAAAAKAAAgAAAAAAAAAAQgAAEkAAAAAAAKAgAAEEA=</HashCode>
+      <FileName>Deposit_Card.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SystemBase">
+    <Position X="9.25" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAKCEgAAAAAAAgAAAAAAgAIAAAABAAAAAAAA=</HashCode>
+      <FileName>System.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="__cardDictionary" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AdminSystem">
+    <Position X="7.5" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAgIAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>System_Admin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserSystem">
+    <Position X="10.5" Y="6" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAEAAAAAAAAgACAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>System_User.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="User_ptr" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Card" Collapsed="true">
+    <Position X="3" Y="0.75" Width="2" />
+    <Members>
+      <Method Name="confirm" Hidden="true" />
+      <Method Name="getCardholderName" Hidden="true" />
+      <Method Name="getClassName" Hidden="true" />
+      <Method Name="getIssueDate" Hidden="true" />
+      <Method Name="setCardholderName" Hidden="true" />
+      <Method Name="setIssueDate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>FABAAAAiAAAgACAAEQAAAAQoAAAgAAAAAQAKAAABkAA=</HashCode>
+      <FileName>Card.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="std::shared_ptr&lt;_Ty&gt;" Collapsed="true">
+    <Position X="12.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAkAAAAQgAAAAAAIICAAQAgAAAAAAA=</HashCode>
+      <FileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\memory</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;" Collapsed="true">
+    <Position X="13.25" Y="3.25" Width="2.5" />
+    <NestedTypes>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::_Alty" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::reverse_iterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::const_pointer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::mapped_type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::_Mybase" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::iterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::const_reference" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::difference_type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::allocator_type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::size_type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::key_type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::key_compare" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::const_iterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::pointer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::_Myt" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::reference" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::value_type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::value_compare" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::_Pairib" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;::const_reverse_iterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAACQAAAAAAIAAAEBBAAAgAAgAAAAAAA=</HashCode>
+      <FileName>c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
