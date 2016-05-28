@@ -132,7 +132,6 @@ void UserSystem::moneyDeal()
 				cin >> money;
 				cin.ignore();
 				cin.clear();
-				ptr->receiveMoney(money);
 				ptr->transfer(*__cardDictionary.at(cardID), money);
 			}
 			break;

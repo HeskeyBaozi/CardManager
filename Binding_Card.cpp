@@ -2,6 +2,15 @@
 using namespace std;
 
 
+double Binding_Card::getBalance() const
+{
+	return 0.0;
+}
+
+void Binding_Card::setBalance(double balance)
+{
+}
+
 Binding_Card::Binding_Card(
 	const string& issueDate,
 	const string& studentID,

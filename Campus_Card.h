@@ -28,11 +28,11 @@ public:
 	/* Getter & Setter */
 	std::string getStudentID() const;
 	std::string getSchool() const;
-	double getBalance() const;
+	double getBalance() const override;
 
 	void setStudentID(const std::string& studentID);
 	void setSchool(const std::string& school);
-	void setBalance(double balance);
+	void setBalance(double balance) override;
 
 	std::string getClassName() override;
 

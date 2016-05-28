@@ -15,7 +15,7 @@ Campus_Card::Campus_Card(const std::string& issueDate,
 {
 	setStudentID(studentID);
 	setSchool(school);
-	setBalance(balance);
+	Campus_Card::setBalance(balance);
 	cout << holderName << ' ' << studentID << " 的校园卡创建了" << endl;
 }
 
@@ -26,9 +26,9 @@ Campus_Card::Campus_Card(const Json::Value& json)
 	setSchool(json["school"].asString());
 	if (json["balance"].isArray())
 	{
-		setBalance(json["balance"][0].asDouble());
+		Campus_Card::setBalance(json["balance"][0].asDouble());
 	}
-	else setBalance(json["balance"].asDouble());
+	else Campus_Card::setBalance(json["balance"].asDouble());
 }
 
 void Campus_Card::pay()

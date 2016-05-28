@@ -19,6 +19,10 @@ public:
 	virtual void query() = 0;
 	virtual void pay() = 0;
 
+	/* Balance */
+	virtual double getBalance() const = 0;
+	virtual void setBalance(double balance) = 0;
+
 	/* receive Money */
 	virtual void receiveMoney(const double money) = 0;
 

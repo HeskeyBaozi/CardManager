@@ -4,7 +4,9 @@
 class Binding_Card
 	:public Campus_Card, public Deposit_Card
 {
-public:	
+public:
+	double getBalance() const override;
+	void setBalance(double balance) override;
 	/* constructor & destructor */
 	explicit Binding_Card(
 		const std::string& issueDate = "None",

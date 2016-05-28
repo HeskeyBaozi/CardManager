@@ -7,7 +7,7 @@ Deposit_Card::~Deposit_Card()
 
 void Deposit_Card::deposit(const double money)
 {
-	setBalance(getBalance() + money);
+	Deposit_Card::setBalance(Deposit_Card::getBalance() + money);
 	cout << "成功充值" << money << "元, 现在有" << getBalance() << "元" << endl;
 }
 
@@ -15,17 +15,17 @@ void Deposit_Card::deposit(const double money)
 
 void Deposit_Card::transfer(Card& otherCard, const double money)
 {
-	if (getBalance() < 0)
+	if (Deposit_Card::getBalance() < 0)
 	{
 		cout << "卡处于透支状态, 不能转出, 请充值" << endl;
 		return;
 	}
-	if(getBalance()<money)
+	if (Deposit_Card::getBalance() < money)
 	{
-		cout << "卡里只有" << getBalance() << "元, 不足" << money << "元, 无法转账" << endl;
+		cout << "卡里只有" << Deposit_Card::getBalance() << "元, 不足" << money << "元, 无法转账" << endl;
 		return;
 	}
-	setBalance(getBalance() - money);
+	Deposit_Card::setBalance(Deposit_Card::getBalance() - money);
 	otherCard.receiveMoney(money);
 	cout << "成功转给" << otherCard.getCardholderName() << " " << money << "元" << endl;
 }
@@ -38,7 +38,7 @@ Deposit_Card::Deposit_Card(
 	:Card(issueDate, holderName)
 {
 	setOverdraft(overdraft);
-	setBalance(balance);
+	Deposit_Card::setBalance(balance);
 }
 
 Deposit_Card::Deposit_Card(const Json::Value& json)
@@ -47,9 +47,9 @@ Deposit_Card::Deposit_Card(const Json::Value& json)
 	setOverdraft(json["overdraft"].asDouble());
 	if (json["balance"].isArray())
 	{
-		setBalance(json["balance"][1].asDouble());
+		Deposit_Card::setBalance(json["balance"][1].asDouble());
 	}
-	else setBalance(json["balance"].asDouble());
+	else Deposit_Card::setBalance(json["balance"].asDouble());
 }
 
 void Deposit_Card::pay()

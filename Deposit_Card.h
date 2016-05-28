@@ -33,10 +33,10 @@ public:
 
 	/* Getter & Setter */
 	double getOverdraft() const;
-	double getBalance() const;
+	double getBalance() const override;
 
 	void setOverdraft(double overdraft);
-	void setBalance(double balance);
+	void setBalance(double balance) override;
 
 
 	std::string getClassName() override;
